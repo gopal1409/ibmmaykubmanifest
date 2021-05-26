@@ -1,14 +1,15 @@
-apiVersion: apps/v1
-kind: Deployment
+#to apply this manifest file we use kubectl apply/delete/create -f nameofthefile
+#all the communicate to k8s happen through api
+apiVersion: apps/v1 #this is the version of api
+kind: Deployment #inside your api which type of api i am invoking
 metadata:
-  name: myapp3-deployment
-
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: myapp3
-  template:
+  name: myapp3-deployment #using metadata we are giving a name to my api
+spec: #specication
+  replicas: 3 #inside the deployment it should create three pod #it will autmatically create a refrence with an hashvalue. 
+  selector: #how deployment is going to find which pod to manage. 
+    matchLabels: #matchExpression
+      app: myapp3 # this is the lable we have created. all the pod will have this label
+  template: #using template we are deploying our container
     metadata:
       name: myapp3-pod
       labels:
