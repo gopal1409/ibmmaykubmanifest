@@ -10,9 +10,9 @@ spec:
       app: myapp3
   template:
     metadata:
-    name: myapp3-pod
-    labels:
-      app: myapp3 
+      name: myapp3-pod
+      labels:
+        app: myapp3 
     spec:
       containers:
         - name: myapp3-container
