@@ -19,7 +19,7 @@ spec: #specication
     spec:
       containers:
         - name: mysql
-          image: mysql:5.6
+          image: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: dbpassword11
