@@ -14,7 +14,7 @@ spec: #specication
      #so that the configfile will be applied
   template: #using template we are deploying our container
     metadata:
-    
+      
       labels:
         app: usermgmt-webapp
     spec:
@@ -34,4 +34,4 @@ spec: #specication
             - name: DB_USERNAME
               value: "root"
             - name: DB_PASSWORD
-              value: "dbpassword"
+              value: "dbpassword11"
