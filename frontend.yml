@@ -1,0 +1,37 @@
+#to apply this manifest file we use kubectl apply/delete/create -f nameofthefile
+#all the communicate to k8s happen through api
+apiVersion: apps/v1 #this is the version of api
+kind: Deployment #inside your api which type of api i am invoking
+metadata:
+  name: usermgmt-webapp #using metadata we are giving a name to my api
+  label:
+    app: usermgmt-webapp
+spec: #specication
+  replicas: 1 #inside the deployment it should create three pod #it will autmatically create a refrence with an hashvalue. 
+  selector: #how deployment is going to find which pod to manage. 
+    matchLabels: #matchExpression
+      app: usermgmt-webapp # this is the lable we have created. all the pod will have this label
+     #so that the configfile will be applied
+  template: #using template we are deploying our container
+    metadata:
+    
+      labels:
+        app: usermgmt-webapp
+    spec:
+      containers:
+        - name: usermgmt-webapp
+          image: stacksimplify/kube-usermgmt-webapp:1.0.0-MySQLDB
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOSTNAME
+              value: "mysql"
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              value: "webappdb"
+            - name: DB_USERNAME
+              value: "root"
+            - name: DB_PASSWORD
+              value: "dbpassword"
