@@ -37,7 +37,7 @@ spec: #specication
       - name: my-persistent-storage
         persistentVolumeClaim:
           claimName: task-pv-claim    #it will be attached with you pv /mnt/data  
-      - name: usermanagement-dbcreation-scrip
+      - name: usermanagement-dbcreation-script
         configMap:
           name: usermanagement-dbcreation-script
 
