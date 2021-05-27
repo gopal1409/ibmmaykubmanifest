@@ -1,0 +1,43 @@
+#to apply this manifest file we use kubectl apply/delete/create -f nameofthefile
+#all the communicate to k8s happen through api
+apiVersion: apps/v1 #this is the version of api
+kind: Deployment #inside your api which type of api i am invoking
+metadata:
+  name: mysql #using metadata we are giving a name to my api
+spec: #specication
+  replicas: 1 #inside the deployment it should create three pod #it will autmatically create a refrence with an hashvalue. 
+  selector: #how deployment is going to find which pod to manage. 
+    matchLabels: #matchExpression
+      app: mysql # this is the lable we have created. all the pod will have this label
+  strategy:
+    type: Recreate    #so that the configfile will be applied
+  template: #using template we are deploying our container
+    metadata:
+    
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.6
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: dbpassword11
+          ports:
+            - containerPort: 3306
+              name: mysql
+          # it should be mapped with my persistent storage. 
+          volumeMounts: #it is inside your container
+            - name: my-persistent-storage
+              mountPath: /var/lib/mysql #this is inside your container
+            - name: usermanagement-dbcreation-script
+              mountPath: /docker-entrypoint-initdb.d
+          #while launching it should use configmap
+    volumes:
+      - name: my-persistent-storage
+        persistentVolumeClaim:
+          claimName: task-pv-claim    #it will be attached with you pv /mnt/data  
+      - name: usermanagement-dbcreation-scrip
+        configMap:
+          name: usermanagement-dbcreation-script
+
