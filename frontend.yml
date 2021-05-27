@@ -4,7 +4,7 @@ apiVersion: apps/v1 #this is the version of api
 kind: Deployment #inside your api which type of api i am invoking
 metadata:
   name: usermgmt-webapp #using metadata we are giving a name to my api
-  label:
+  labels:
     app: usermgmt-webapp
 spec: #specication
   replicas: 1 #inside the deployment it should create three pod #it will autmatically create a refrence with an hashvalue. 
