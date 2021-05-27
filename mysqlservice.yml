@@ -3,8 +3,8 @@ kind: Service
 metadata:
   name: mysql 
 spec:
-  selector: #how service is going to map with mysql deployment
+  selector:
     app: mysql
   ports:
     - port: 3306
-  clusterIP: None #this menas we are going to use the Pod IP to communicate. 
+  clusterIP: None
