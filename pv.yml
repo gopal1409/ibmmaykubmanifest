@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: task-pv-volume
 spec:
-  storageClassName: manual
+  storageClassName: manual #the name of the storage class
   capacity:
     storage: 10Gi
   accessModes:
