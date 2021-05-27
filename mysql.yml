@@ -33,11 +33,11 @@ spec: #specication
             - name: usermanagement-dbcreation-script
               mountPath: /docker-entrypoint-initdb.d
           #while launching it should use configmap
-    volumes:
-      - name: my-persistent-storage
-        persistentVolumeClaim:
-          claimName: task-pv-claim    #it will be attached with you pv /mnt/data  
-      - name: usermanagement-dbcreation-script
-        configMap:
-          name: usermanagement-dbcreation-script
+      volumes:
+        - name: my-persistent-storage
+          persistentVolumeClaim:
+            claimName: task-pv-claim    #it will be attached with you pv /mnt/data  
+        - name: usermanagement-dbcreation-script
+          configMap:
+            name: usermanagement-dbcreation-script
 
