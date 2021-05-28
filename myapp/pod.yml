@@ -6,7 +6,7 @@ metadata:
     run: gvisor
   name: gvisor
 spec:
-  runtimeClassName: test
+  runtimeClassName: gvisor
   containers:
   - image: nginx
     name: gvisor
